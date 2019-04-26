@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 自定义两组样式 -->
+    <style>
+        *{
+            padding: 0;
+            margin: 0
+        }
+        li{
+            border-bottom: 1px solid #999;
+            margin: 5px;
+            line-height: 35px;
+            padding-left: 5px;
+            font-size: 12px;
+            list-style: none;
+            width: 100%
+        }
+        li:hover{
+            background-color: #ccc;
+            transition: all 1s ease;
+        }
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateY(100px)
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.4s ease;
+        }
+        /* .v-move  和  .v-leave-active 配合使用，能够实现列表后续的元素，渐渐地飘上来的效果*/
+        /* 可以当做固定写法 */
+        .v-move{
+            transition: all 0.4s ease;
+        }
+        .v-leave-active{
+            position: absolute
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <label>
+                    ID:
+                    <input type="text" v-model='id'> 
+                </label>
+            <label>
+                    Name:
+                    <input type="text" v-model='name'> 
+                </label>
+            <label>
+                    <input type="button" @click='add' value="添加"> 
+                </label>
+        </div>
+        <ul>
+            <transition-group>
+                <li v-for='(item,i) in list' :key='item.id' @click='del(i)'>
+                        {{item.id}}-----{{item.name}}
+                </li>
+            </transition-group>
+           
+        </ul> 
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                id:'',
+                name:'',
+                list:[
+                {id:1,name:'赵高'},
+                {id:2,name:'秦桧'},
+                {id:3,name:'严嵩'},
+                ]
+            },
+            methods: {
+                add(){
+                    this.list.push({
+                        id:this.id,
+                        name:this.name
+                    })
+                },
+                del(i){
+                    this.list.splice(i,1)
+                }
+            },
+        })
+    </script>
+</body>
+</html>
