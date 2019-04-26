@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="change">切换登录</button>
+        <p v-if="bOn">欢迎您</p>
+        <p v-else="bOn">请登录</p>
+        <ul :style="styles" :class="classes">
+            <li v-for="sp,index of sps">{{sp}}</li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        
+        var app = new Vue({
+        el : "#app",
+        data : {
+            bOn:false,
+            sps:["hhhh","ddddd","fffff","wwwww"],
+            //classes:"box1",
+            styles :{
+                "background":"yellow",
+                "color":"red",
+            },
+            classes:[{"box1":true},{"box2":false},{"box3":true}],
+        },
+        methods:{
+            change(){
+                this.bOn=!this.bOn;
+            },
+        }
+    })
+    </script>
+    
+</body>
+</html>
