@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <my-element style="background: green;" src="练习1.png"></my-element>
+    <div class="color">我是div</div>
+    <script>
+    
+    class MyElement extends HTMLElement {  
+        constructor() {
+            super();
+            // 创建一个容器根节点：创建的时候自动添加到指定的对象上
+            // 作用：1. 作为容器，2. 产生一个独立的私有作用（组件作用域）
+            let shadom = this.attachShadow({ //创建方法
+                mode: 'open'
+            });
+            let span = document.createElement('span');
+            span.classList.add('color');
+            span.innerHTML = 'Hello XZY';
+            let img = new Image();
+            img.src = this.getAttribute('src');
+            let style = document.createElement('style');
+            style.textContent = `
+                .color {color: red;}
+            `;
+            shadom.appendChild(span); 
+            shadom.appendChild(img);
+            shadom.appendChild(style);
+        }
+    }
+    customElements.define('my-element', MyElement);
+
+    var myEle = document.querySelector("my-element");
+    console.log(myEle.childNodes);
+    console.log(myEle.shadowRoot.querySelector("span"));
+    </script>
+</body>
+</html>

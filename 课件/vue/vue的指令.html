@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div id="app"></div> -->
+    <div id="app">
+        <button @click="changeBon">切换登录</button>
+        <p v-if="bOn">欢迎您</p>
+        <p v-else="bOn">请登录</p>
+        <ul :style="styles" :class="classes">
+            <li v-for="sp,index of sps">{{sp}}</li>
+        </ul>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+    new Vue({
+        el : "#app",
+        // template : "<h1>hello Vue</h1>"
+        data : {
+        	bOn : false,
+            sps : ["苹果","香蕉","梨","石榴","枣"],
+            // classes : ["box1","box2","box3"],
+            styles : {
+                "background-color":"yellow",
+                "color" : "red",
+            },
+            classes : [{"box1":true},{"box2":false},{"box3":true}],
+        },
+        methods : {
+            changeBon (){
+                this.bOn = !this.bOn;
+            },
+        }
+    })
+    //<button @click="changeBon">切换登录</button>
+    </script>
+</body>
+</html>

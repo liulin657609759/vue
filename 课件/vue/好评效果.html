@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+body{margin:0;}
+ul{margin:0; padding:0; list-style:none; height:35px;margin:200px 200px 0;}
+li{width:35px; float:left;  height:35px; cursor:pointer; border:1px #FC3 solid; margin-right:10px; border-radius:8px;transition:all 0.4s;}
+li.active{background-color:#FC3;}
+li:hover{transform:scale(1.1,1.1);}
+.box div{height:50px; padding:50px;}
+p{margin:0; padding:5px 200px; font-size:30px;}
+</style>
+</head>
+<body>
+<div id="app">
+    <div class="box">
+        <ul>
+            <!-- <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li> -->
+            <li v-for="p,index of pj"
+            :class="{'active':index<=n}"
+            @click="changeP(index)"></li>
+        </ul>
+    <p>{{pj[n]}}</p>
+</div>
+<script src="js/vue.js"></script>
+<script>
+var app = new Vue({
+    el : "#app",
+    data : {
+        pj : ["很差","较差","一般","很好","完美"],
+        n : 2,
+    },
+    methods : {
+        changeP (i){
+            this.n = i;
+        }
+    }
+})
+</script>
+</div>
+</body>
+</html>

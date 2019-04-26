@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 自定义两组样式 -->
+
+    <style>
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(100px)
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.4s ease;
+        }
+        /* 修改前缀 */
+        .my-enter,
+        .my-leave-to{
+            opacity: 0;
+            transform: translateY(100px)
+        }
+        .my-enter-active,
+        .my-leave-active{
+            transition: all 0.4s ease;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click='flag=!flag'>toggle</button>
+        <!-- 使用transition元素把需要动画控制的元素包裹起来 -->
+        <!-- transition是Vue官方提供的 -->
+
+        <transition>
+                <h3 v-if='flag'>这是一个h3</h3>
+        </transition>
+        <hr>
+        <button @click='flag2=!flag2'>toggle</button>
+        <!-- 使用transition元素把需要动画控制的元素包裹起来 -->
+        <!-- transition是Vue官方提供的 -->
+
+        <transition name='my'>
+                <h3 v-if='flag2'>这是一个h3</h3>
+        </transition>
+        
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                flag:false,
+                flag2:false
+            },
+            methods: {
+                
+            },
+        })
+    </script>
+</body>
+</html>

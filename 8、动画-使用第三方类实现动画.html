@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.0/animate.css">
+</head>
+<body>
+    <div id="app">
+        <button @click='flag=!flag'>toggle</button>
+
+        <!-- <transition enter-active-class='animated bounceIn' leave-active-class='animated bounceOut'>
+                <h3 v-if='flag'>这是一个h3</h3>
+        </transition> -->
+
+        <!-- 改变不用必须写animated类 -->
+        <!-- 使用  ：duration='毫秒值'来统一设置入场和离场动画时长 -->
+        <!-- 使用 ：duration={enter：200，leave：100}来分别设置入场 和 离场时间 -->
+        <transition enter-active-class='bounceIn' leave-active-class='bounceOut' :duration='{enter:200,leave:100}'>
+                <h3 class="animated" v-if='flag'>这是一个h3</h3>
+        </transition>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                flag:false,
+            },
+            methods: {
+                
+            },
+        })
+    </script>
+</body>
+</html>

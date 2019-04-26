@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+body{margin:0;}
+ul{padding:0; list-style:none; margin:150px 150px;}
+li{
+	width:80px; height:50px; display:inline-block;
+	border-radius:8px; border:1px #000 solid;
+	text-align:center; line-height:50px;
+	cursor:pointer; transition:all 0.3s linear;
+	margin-left:5px;
+}
+li:hover{background-color:#0CF; color:#fff; border:1px #fff solid;}	
+li.checked{background-color:#0CF; color:#fff; border:1px #fff solid;}
+</style>
+</head>
+<body>
+<ul class="box" id="app">
+	<!-- <li class="checked">北京</li>
+    <li>上海</li>
+    <li>重庆</li>
+    <li>广州</li>
+	<li>西安</li> -->
+	<li v-for="city,index of cities"
+	:class="{'checked':index==n}"
+	@click="changeN(index)">{{city}}</li>
+</ul>
+<script src="js/vue.js"></script>
+<script>
+var app = new Vue({
+	el : "#app",
+	data : {
+		cities : ["北京","上海","重庆","广州","西安"],
+		n : 0,
+	},
+	methods : {
+		changeN (index){
+			this.n = index;
+		}
+	}
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <xzy-tab index="2" titles='["a", "b", "c"]' contents='["1111111","sdsadsadsad","333333"]'></xzy-tab>
+
+    <xzy-tab index="1" titles='["111", "222", "333","444"]' contents='["aaaaaaaaa","bbbbbbbb","ddddd","qqqqqqq"]'></xzy-tab>
+
+    <xzy-tab titles='["111", "222", "333","444"]' contents='["aaaaaaaaa","bbbbbbbb","ddddd","qqqqqqq"]'></xzy-tab>
+    <script>
+
+    class MyTab extends HTMLElement {  
+        constructor() {
+            super();
+            let shadom = this.attachShadow({ //创建方法
+                mode: 'open'
+            });
+            const arr1 = JSON.parse(this.getAttribute('titles'));
+            const arr2 = JSON.parse(this.getAttribute("contents"));
+            for(let i=0;i<arr1.length;i++){
+                let oBtn = document.createElement("button");
+                oBtn.innerHTML = arr1[i];
+                shadom.appendChild(oBtn);
+            }
+            for(let i=0;i<arr2.length;i++){
+                let oP = document.createElement("p");
+                oP.innerHTML = arr2[i];
+                shadom.appendChild(oP);
+            }
+            var aBtn = this.shadowRoot.querySelectorAll("button");
+            var aP = this.shadowRoot.querySelectorAll("p");
+            const index = this.getAttribute('index') ? this.getAttribute('index')-1 : 0;
+            aBtn[index].classList.add("active");
+            aP[index].style.display = "block";
+            for(let i=0;i<aBtn.length;i++){
+                (function (i){
+                    aBtn[i].onclick = function (){
+                        for(let j=0;j<aP.length;j++){
+                            aBtn[j].classList.remove("active");
+                            aP[j].style.display = "none";
+                        }
+                        this.classList.add("active");
+                        aP[i].style.display = "block";
+                    }
+                })(i)
+                
+            }
+            let style = document.createElement('style');
+            style.textContent = `
+            button{
+                width: 120px;
+                height: 40px;
+                font-size: 28px;
+            }
+            button.active{
+                background-color: yellow;
+                color: red;
+            }
+            p{
+                width: 400px;
+                font-size: 24px;
+                color: #333;
+                display: none;
+            }
+            `;
+            shadom.appendChild(style);
+        }
+    }
+    customElements.define('xzy-tab', MyTab);
+    </script>
+</body>
+</html>

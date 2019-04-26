@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <my-element style="background: green;" src="练习1.png" a="1">
+
+    </my-element>
+    <iframe src="" frameborder="1"></iframe>
+    <script>
+    var oIframe = document.querySelector("iframe");
+    class MyElement extends HTMLElement {  
+        constructor() {
+            
+            super();
+            // 创建一个容器根节点：创建的时候自动添加到指定的对象上
+            // 作用：1. 作为容器，2. 产生一个独立的私有作用（组件作用域）
+            let shadom = this.attachShadow({ //创建方法
+                mode: 'open'
+            });
+            let span = document.createElement('span');
+            span.classList.add('color');
+            span.innerHTML = 'Hello XZY';
+            let img = new Image();
+            img.src = this.getAttribute('src');
+            let style = document.createElement('style');
+            style.textContent = `
+                .color {color: red;}
+            `;
+            shadom.appendChild(span); 
+            shadom.appendChild(img);
+            shadom.appendChild(style);
+            
+        }
+        static get observedAttributes() {
+            return ['a'];  //a,b属性增加、删除和更改时触发
+        }
+        connectedCallback() {
+            console.log("connectedCallback");
+        }
+        disconnectedCallback(){
+            console.log("disconnectedCallback");
+        }
+        adoptedCallback(){
+            console.log("adoptedCallback");
+        }
+        attributeChangedCallback(attr,oldV,newV){
+            console.log(attr,oldV,newV);
+        }
+    }
+    customElements.define('my-element', MyElement);
+    var oEle = document.querySelector("my-element");
+    // document.onclick = function (){
+    //     oIframe.contentWindow.document.body.appendChild(oEle);
+    // }
+    </script>
+</body>
+</html>

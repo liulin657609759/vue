@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <my-element></my-element>
+    <div is="my-div"></div>
+    <script>
+    console.dir(document.querySelector("div"));
+    class MyElement extends HTMLElement {  //js部分
+        constructor() {
+            super();
+            console.log(1);
+        } //我们可以用console.dir来查看dom元素，会发现他们都继承于HTMLElement
+    }  //因此我们自定义的元素也要继承于HTMLElement
+    customElements.define('my-element', MyElement); //用define（定义）方法把Element类注册成为一个元素
+    //两个参数：注册的标签名和类名，注意标签名称必须带中划线
+
+    class MyDivElement extends HTMLDivElement {  //继承与div元素
+        constructor() {
+            console.log('my-div');
+            super();
+        }
+    }
+    customElements.define('my-div', MyDivElement, { 
+    	extends: 'div', //注意必须是已有标签名
+    });
+    </script>
+</body>
+</html>

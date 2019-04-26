@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+            <p>{{msg|msgFormat('邪恶')|test}}</p>
+    </div>
+    
+    <script src="vue.js"></script>
+    <script>
+        //定义一个全局的过滤器，名字叫做msgFormat
+        Vue.filter('msgFormat',function(msg,arg){
+            //字符串的 replace的第一个参数，出了写一个字符串之外，还可以定义一个正则
+           return msg.replace( /单纯/g,arg)
+        })
+        //多次调用
+        Vue.filter('test',function(msg){
+            return msg+'=========='
+        })
+        var app = new Vue({
+        el : "#app",
+        data : {
+           msg:'我是一个单纯的人，有多单纯呢？不知道什么是邪恶！！'
+        },
+        methods:{
+            
+            }
+        }
+        )   
+    </script>
+    
+</body>
+</html>

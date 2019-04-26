@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    button{
+        width: 120px;
+        height: 40px;
+        font-size: 28px;
+    }
+    button.active{
+        background-color: yellow;
+        color: red;
+    }
+    p{
+        width: 400px;
+        font-size: 24px;
+        color: #333;
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- <button class="active">111</button>
+        <button>222</button>
+        <button>333</button>
+        <p>111内容</p>
+        <p>222内容</p>
+        <p>333内容</p> -->
+    </div>
+    <script>
+    const arr1 = [111,222,333];
+    const arr2 = ["111内容","222内容","333内容"];
+    var oDiv = document.querySelector("div");
+    
+    for(let i=0;i<arr1.length;i++){
+        let oBtn = document.createElement("button");
+        oBtn.innerHTML = arr1[i];
+        oDiv.appendChild(oBtn);
+    }
+    for(let i=0;i<arr2.length;i++){
+        let oP = document.createElement("p");
+        oP.innerHTML = arr2[i];
+        oDiv.appendChild(oP);
+    }
+    var aBtn = document.querySelectorAll("button");
+    var aP = document.querySelectorAll("p");
+    aBtn[0].classList.add("active");
+    aP[0].style.display = "block";
+    for(let i=0;i<aBtn.length;i++){
+        (function (i){
+            aBtn[i].onclick = function (){
+                for(let j=0;j<aP.length;j++){
+                    aBtn[j].classList.remove("active");
+                    aP[j].style.display = "none";
+                }
+                this.classList.add("active");
+                aP[i].style.display = "block";
+            }
+        })(i)
+    }
+
+    
+    </script>
+</body>
+</html>
