@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <mycom2></mycom2>
+        <mycom2></mycom2>
+        <mycom2></mycom2>
+    </div>
+
+    <!-- 在被控制的#app外面，使用template元素，定义组件的HTML模板结构 -->
+    <template id="tmp2">
+        <div>
+                <input type="button" value="+1"  @click='add'>
+                <h3>{{count}}</h3>
+            </div>
+    </template>
+    
+    <script src="vue.js"></script>
+    <script>
+        // var dataObj={count:0}
+        Vue.component('mycom2',{
+            template:'#tmp2',
+            data:function() {
+                // return dataObj;
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                add(){
+                    this.count++
+                }
+            }
+        })
+        var vm=new Vue({
+            el:'#app',
+            date:{
+
+            },
+            methods: {
+                
+            },
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <mycoml></mycoml>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var coml=Vue.extend({
+            template:'<h3>这是用Vue.extend创建组件</h3>'
+        })
+        Vue.component('mycoml',coml)
+        var vm=new Vue({
+            el:'#app',
+            date:{
+
+            },
+            methods: {
+                
+            },
+
+        })
+    </script>
+</body>
+</html>
