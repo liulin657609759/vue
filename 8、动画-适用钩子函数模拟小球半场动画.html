@@ -54,7 +54,15 @@
                 },
 
                 afterEnter(el){
+                    //这句话，第一个功能，是控制小球的显示与隐藏
+                    //第二个功能：直接跳过后半场动画，让flag 标识符 直接变为false
+                    //第二次点击的时候，flag  false -> true
                     this.flag=!this.flag
+
+                    //el.style.opacity = 0;
+                    //为什么不行
+                    //vue 把一个完整的动画，使用钩子函数，拆分为两部分；
+                    //我们使用 flag 标识符，来表示动画的切换
                 }
             },
         })
