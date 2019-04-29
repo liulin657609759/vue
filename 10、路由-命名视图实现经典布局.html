@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+        <!-- 引入路由模块 -->
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0
+        }
+        .header{
+            height: 150px;
+            background: #7476;
+        }
+        .container{
+            display: flex;
+            height: 500px;
+        }
+        .left{
+            background: #9999;
+            flex: 3;
+        }
+        .main{
+            background: paleturquoise;
+            flex: 8;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+
+        <div class="container">
+                <router-view name='left'></router-view>
+                <router-view name='main'></router-view>
+        </div>
+        
+    </div>
+
+    <script>
+        //创建组件模板对象
+       let header={
+           template:"<h1 class='header'>Header头部区域</h1>"
+       }
+       let leftBox={
+           template:"<h1 class='left'>leftBox侧边栏区域</h1>"
+       }
+       let mainBox={
+           template:"<h1 class='main'>MainBox主体区域</h1>"
+       }
+
+        
+        let router= new VueRouter({
+            
+            routes: [
+                {path:'/',
+                //这里是components，表示传入多个组件
+                components:{
+                    'default':header,
+                    'left':leftBox,
+                    'main':mainBox
+                }
+                }
+            ],
+          
+        })
+
+        let vm=new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods: {
+                
+            },
+            router
+        })
+    </script>
+</body>
+</html>
