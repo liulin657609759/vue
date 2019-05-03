@@ -16,7 +16,8 @@
 - 执行 npx webpack 
 - 自定义命令
 - 在package.json中添加
-+ "scripts":{
-+    "xxx":"XXXX",
-+ }
+> "scripts":{
+>    "xxx":"XXXX",
+> }
 - 执行npm run xxx
+
