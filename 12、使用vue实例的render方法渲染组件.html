@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <login></login>
+    </div>
+    <div id="app1">
+        <!-- 这里p标签不会显示，因为render函数会用组件替换掉该组件的父容器 -->
+        <p>6376472</p>
+    </div>
+    <script>
+        //常用的创建组件
+        var login={
+            template:"<h1>这是登录组件</h1>"
+        }
+        var vm=new Vue({
+            el:"#app",
+            data:{},
+            methods: {
+            },
+            components:{
+                login
+            }
+        })
+
+        //12、使用vue实例的render方法渲染组件
+        var vm=new Vue({
+            el:"#app1",
+            data:{},
+            methods: {
+            },
+            render:function(createElements) {//createElements 是一个 方法，调用他，能够把指定的组件模板，渲染为html结构
+                // var html = createElements(login);
+                return createElements(login);
+                //注意：这里return的结果会替换页 面中el指定的那个容器
+            },
+        })
+    </script>
+</body>
+</html>
