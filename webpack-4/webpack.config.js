@@ -7,7 +7,7 @@ module.exports={
         progress:true,//在内存中打包可以看到一个进度条
         contentBase:'./dist'
     },
-    mode:"production",
+    mode:"production",//模式(为了看到代码)：默认两种 production development
     entry:'./src/index.js',//入口
     output:{
         filename:'main.js',//打包后的文件名
