@@ -32,6 +32,26 @@
 import Vue from "vue"
 import login from "./login.vue"
 ```
+* vue文件中 引用数据 方法
+```
+<script>
+    export default {
+        data(){
+            return {
+                msg:"123"
+            }
+        },
+        methods:{
+            show(){
+                console.log("调用了login.vue的show方法")
+            }
+        }
+    }
+    // 在ES6中，规定了如何 导入 和 导出 ，模块
+    // ES6中导入模块，使用 import 模块名称 from "模块标识符"
+    // 在ES6中，使用 export default 和 export 向外暴露成员
+</script>
+```
 * 想要通过vue把一个组件放到页面中去，需要使用render函数
 ```
 let vm = new Vue({
