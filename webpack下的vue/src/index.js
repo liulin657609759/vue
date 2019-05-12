@@ -6,7 +6,7 @@
 // 在webpack尝试使用Vue
 // 注意：在webpack中，使用import Vue from "vue"导入Vue构造函数，功能不全，只提供了runtime-only的方式，并没有提供 像网页中那样的使用方式
 // import Vue from "vue"
-import Vue from "../node_modules/vue/dist/vue.js"
+import Vue from "vue"
 // import Vue from "vue/dist/vue.js"
 
 
