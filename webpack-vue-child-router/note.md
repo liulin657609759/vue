@@ -38,7 +38,7 @@ var router = new VueRouter({
 ```
 * 5、最后
 > npm run bulid
-> nom run dev
+> > npm run dev
 
 ## 组件中style标签中 scoped 和 lang 属性
 * scoped属性
