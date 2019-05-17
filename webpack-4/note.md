@@ -129,7 +129,37 @@ new MiniCssExtractPlugin({
     ```
 - 运行 npm run bulid
 >  会在dist下生成main.js文件
-
+## 安装babel（ES6到ES5）
+### 安装 包 
+> yarn add babel-loader babel-core babel-preset-env -D
+* * 注意 这几个包的版本 要对应，否则，打包时会报错（详情版本号看本项目的配置文件）
+* 这几个包的作用
+* * babel-loader的作用正是实现对使用了ES2015+语法的.js文件进行处理。
+* * babel-core的作用在于提供一系列api。这便是说，当webpack使用babel-loader处理文件时，babel-loader实际上调用了babel-core的api，因此也必须安装babel-core
+* * babel-preset-env的作用是告诉babel使用哪种转码规则进行文件处理。事实上，babel有几种规则都可以实现对ES6语法的转码，如babel-preset-es2015、babel-preset-latest、babel-preset-env，不过官方现已建议采用babel-preset-env，本文也将采用babel-preset-env，你可以通过官网了解几种规则的区别。
+### 配置babel 规则
+* 方式一
+* * 通过package.json。在package.json文件中增加一个“babel"属性，该属性是一个JSON对象，作用是设置项目中的babel转码规则和使用到的babel插件，其基本格式如下：
+```
+"babel":{
+  "presets": [],
+  "plugins": []
+}
+```
+* * 其中
+>”presets”属性字段设定转码规则，”plugins”属性设置使用到的插件。在本项目中只需将”babel”属性 的”presets”:设置为[“env”]即可，如下所示：
+```
+"babel":{
+  "presets": ["env"]
+}
+```
+* 方式二
+* * 通过.babelrc文件。在项目根目录下新建.babelrc文件，里面只需输入第一种方式中”babel”属性的值即可：
+```
+{
+  "presets": ["env"]
+}
+```
 
 
 
